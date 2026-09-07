@@ -96,7 +96,7 @@ const I18N = {
 class UmaTierListApp {
   constructor() {
     this.currentCategory = 'characters'; // 'characters' | 'outfits' | 'supports'
-    this.currentLang = 'th';
+    this.currentLang = 'en';
     this.showLabels = true;
     this.cardSize = 84;
     
@@ -289,6 +289,18 @@ class UmaTierListApp {
       .map(item => String(item.id));
   }
 
+  // Rebuild pool from current in-memory state (without reloading from localStorage)
+  rebuildPool(category) {
+    const allItems = this.categoryData[category].items;
+    const assignedIds = new Set();
+    this.categoryData[category].tiers.forEach(t => {
+      t.items.forEach(id => assignedIds.add(String(id)));
+    });
+    this.categoryData[category].pool = allItems
+      .filter(item => !assignedIds.has(String(item.id)))
+      .map(item => String(item.id));
+  }
+
   exportToJson() {
     const fullState = {
       category: this.currentCategory,
@@ -307,25 +319,31 @@ class UmaTierListApp {
     this.showToast(I18N[this.currentLang].savedToast, 'success');
   }
 
-  importFromJson(file) {
+  async importFromJson(file) {
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
       try {
         const data = JSON.parse(e.target.result);
+
+        // Switch category first and WAIT for it to finish loading data
         if (data.category && data.category !== this.currentCategory) {
-          this.switchCategory(data.category);
+          await this.switchCategory(data.category);
         }
+
         if (data.title) document.getElementById('tierlist-title').value = data.title;
         if (data.desc) document.getElementById('tierlist-desc').value = data.desc;
+
         if (Array.isArray(data.tiers)) {
+          // Set tiers AFTER switchCategory is done (so it doesn't get overwritten)
           this.categoryData[this.currentCategory].tiers = data.tiers;
-          this.loadCategoryState(this.currentCategory);
+          this.rebuildPool(this.currentCategory);
           this.renderTierBoard();
           this.renderPool();
           this.saveCategoryState();
           this.showToast(I18N[this.currentLang].loadedToast, 'success');
         }
       } catch (err) {
+        console.error('Load error:', err);
         alert('Invalid JSON file format.');
       }
     };
@@ -376,11 +394,11 @@ class UmaTierListApp {
       const controls = document.createElement('div');
       controls.className = 'tier-row-controls';
       controls.innerHTML = `
-        <button class="tier-action-btn" title="แก้ไข Tier" data-action="edit">⚙️</button>
-        <button class="tier-action-btn" title="เลื่อนขึ้น" data-action="up">▲</button>
-        <button class="tier-action-btn" title="เลื่อนลง" data-action="down">▼</button>
-        <button class="tier-action-btn" title="ล้างการ์ดในแถวนี้" data-action="clear">🧹</button>
-        <button class="tier-action-btn del" title="ลบ Tier นี้" data-action="delete">✕</button>
+        <button class="tier-action-btn" title="Edit Tier" data-action="edit">⚙️</button>
+        <button class="tier-action-btn" title="Move Up" data-action="up">▲</button>
+        <button class="tier-action-btn" title="Move Down" data-action="down">▼</button>
+        <button class="tier-action-btn" title="Clear cards in this tier" data-action="clear">🧹</button>
+        <button class="tier-action-btn del" title="Delete this tier" data-action="delete">✕</button>
       `;
 
       controls.querySelector('[data-action="edit"]').addEventListener('click', () => this.openEditTierModal(tier.id));
@@ -456,7 +474,8 @@ class UmaTierListApp {
 
     // Render Cards into Pool
     if (filteredItems.length === 0) {
-      poolContainer.innerHTML = `<div class="empty-pool-msg">ไม่พบรายการที่ตรงกับเงื่อนไขการค้นหา</div>`;
+      const emptyMsg = this.currentLang === 'th' ? 'ไม่พบรายการที่ตรงกับเงื่อนไขการค้นหา' : 'No items match the filter criteria';
+      poolContainer.innerHTML = `<div class="empty-pool-msg">${emptyMsg}</div>`;
     } else {
       const fragment = document.createDocumentFragment();
       filteredItems.forEach(item => {
@@ -468,7 +487,8 @@ class UmaTierListApp {
 
     // Update counter
     const countEl = document.getElementById('pool-count');
-    countEl.textContent = `${filteredItems.length} / ${catData.items.length} รายการ`;
+    const unit = this.currentLang === 'th' ? 'รายการ' : 'items';
+    countEl.textContent = `${filteredItems.length} / ${catData.items.length} ${unit}`;
 
     // Initialize Sortable on pool container
     if (window.Sortable) {
@@ -486,7 +506,8 @@ class UmaTierListApp {
     const card = document.createElement('div');
     card.className = 'uma-card';
     card.dataset.id = item.id;
-    card.title = `${item.name} (${item.name_jp || item.chara_name || ''})\nคลิกเพื่อย้ายแถว`;
+    const clickTip = this.currentLang === 'th' ? 'คลิกเพื่อย้ายแถว' : 'Click to move';
+    card.title = `${item.name} (${item.name_jp || item.chara_name || ''})\n${clickTip}`;
 
     // Rarity Badge
     let rarityHtml = '';
@@ -552,7 +573,8 @@ class UmaTierListApp {
       .filter(id => !assignedIds.has(id));
 
     // Update pool counter
-    document.getElementById('pool-count').textContent = `${catData.pool.length} / ${catData.items.length} รายการ`;
+    const unit = this.currentLang === 'th' ? 'รายการ' : 'items';
+    document.getElementById('pool-count').textContent = `${catData.pool.length} / ${catData.items.length} ${unit}`;
 
     // Auto save
     this.saveCategoryState();
@@ -604,7 +626,7 @@ class UmaTierListApp {
 
     // Return items to pool
     tier.items = [];
-    this.loadCategoryState(this.currentCategory);
+    this.rebuildPool(this.currentCategory);
     this.renderTierBoard();
     this.renderPool();
     this.saveCategoryState();
@@ -622,7 +644,7 @@ class UmaTierListApp {
     const idx = currentTiers.findIndex(t => t.id === tierId);
     if (idx >= 0) {
       currentTiers.splice(idx, 1);
-      this.loadCategoryState(this.currentCategory);
+      this.rebuildPool(this.currentCategory);
       this.renderTierBoard();
       this.renderPool();
       this.saveCategoryState();
@@ -700,7 +722,8 @@ class UmaTierListApp {
     const item = this.findItemById(itemId);
     if (!item) return;
 
-    document.getElementById('quick-move-card-name').textContent = `ย้าย: ${item.title || item.name}`;
+    const prefix = this.currentLang === 'th' ? 'ย้าย:' : 'Move:';
+    document.getElementById('quick-move-card-name').textContent = `${prefix} ${item.title || item.name}`;
     const tiersList = document.getElementById('quick-move-tiers-list');
     tiersList.innerHTML = '';
 
@@ -809,14 +832,29 @@ class UmaTierListApp {
      Localization (TH / EN)
      -------------------------------------------------------------------------- */
   toggleLanguage() {
-    this.currentLang = this.currentLang === 'th' ? 'en' : 'th';
-    document.getElementById('lang-indicator').textContent = this.currentLang.toUpperCase();
-    this.applyLanguage();
+    this.currentLang = this.currentLang === 'en' ? 'th' : 'en';
     localStorage.setItem('uma_tierlist_lang', this.currentLang);
+    this.applyLanguage();
+    this.renderTierBoard();
+    this.renderPool();
   }
 
   applyLanguage() {
     const t = I18N[this.currentLang];
+    document.documentElement.lang = this.currentLang;
+    document.title = this.currentLang === 'en'
+      ? 'Uma Musume Tier List Maker - Rank Characters, Outfits, and Support Cards'
+      : 'Uma Musume Tier List Maker - จัดอันดับตัวละคร ชุด และการ์ดซัพ';
+
+    // Update Language Toggle Button - Flag Emote Only
+    const langBtn = document.getElementById('btn-lang-toggle');
+    if (langBtn) {
+      langBtn.textContent = this.currentLang === 'en' ? '🇺🇸' : '🇹🇭';
+      langBtn.title = this.currentLang === 'en'
+        ? 'Switch to Thai (เปลี่ยนเป็นภาษาไทย)'
+        : 'Switch to English (เปลี่ยนเป็นภาษาอังกฤษ)';
+    }
+
     document.getElementById('txt-subtitle').textContent = t.subtitle;
     document.getElementById('tab-characters').querySelector('span:first-child').textContent = t.charsTab;
     document.getElementById('tab-outfits').querySelector('span:first-child').textContent = t.outfitsTab;
@@ -839,6 +877,10 @@ class UmaTierListApp {
     document.getElementById('btn-quick-move-pool').textContent = t.returnToPoolBtn;
     document.getElementById('btn-download-img').textContent = t.downloadPng;
     document.getElementById('btn-copy-img').textContent = t.copyPng;
+    
+    // Update API status text
+    const currentStatus = window.umaDataService ? window.umaDataService.status : 'ready';
+    this.updateApiStatus(currentStatus);
     this.populateCharacterFilter();
   }
 
@@ -848,13 +890,14 @@ class UmaTierListApp {
   updateApiStatus(state) {
     const dot = document.getElementById('status-dot');
     const text = document.getElementById('status-text');
+    if (!dot || !text) return;
     dot.className = `status-dot ${state === 'loading' ? 'loading' : state === 'error' ? 'error' : ''}`;
     if (state === 'loading') {
-      text.textContent = 'กำลังเชื่อมต่อ Umapyoi.net...';
+      text.textContent = this.currentLang === 'th' ? 'กำลังเชื่อมต่อ Umapyoi.net...' : 'Connecting to Umapyoi.net...';
     } else if (state === 'error') {
-      text.textContent = 'ใชัข้อมูลแคช (Offline)';
+      text.textContent = this.currentLang === 'th' ? 'ใช้ข้อมูลแคช (Offline)' : 'Using Cached Data (Offline)';
     } else {
-      text.textContent = 'Umapyoi.net พร้อมใช้งาน';
+      text.textContent = this.currentLang === 'th' ? 'Umapyoi.net พร้อมใช้งาน' : 'Umapyoi.net Ready';
     }
   }
 
@@ -875,9 +918,10 @@ class UmaTierListApp {
     const savedLang = localStorage.getItem('uma_tierlist_lang');
     if (savedLang && (savedLang === 'th' || savedLang === 'en')) {
       this.currentLang = savedLang;
-      document.getElementById('lang-indicator').textContent = this.currentLang.toUpperCase();
-      this.applyLanguage();
+    } else {
+      this.currentLang = 'en'; // default English
     }
+    this.applyLanguage();
   }
 
   /* --------------------------------------------------------------------------
@@ -894,8 +938,11 @@ class UmaTierListApp {
       });
     });
 
-    // Language Toggle
-    document.getElementById('btn-lang-toggle').addEventListener('click', () => this.toggleLanguage());
+    // Language Toggle (removed button)
+    const langBtn = document.getElementById('btn-lang-toggle');
+    if (langBtn) {
+      langBtn.addEventListener('click', () => this.toggleLanguage());
+    }
 
     // API Sync Button
     document.getElementById('btn-sync-api').addEventListener('click', async () => {
@@ -949,7 +996,7 @@ class UmaTierListApp {
     document.getElementById('btn-reset-all').addEventListener('click', () => {
       if (confirm(I18N[this.currentLang].confirmReset)) {
         this.categoryData[this.currentCategory].tiers = this.getDefaultTiers(this.currentCategory);
-        this.loadCategoryState(this.currentCategory);
+        this.rebuildPool(this.currentCategory);
         this.renderTierBoard();
         this.renderPool();
         this.saveCategoryState();
@@ -961,7 +1008,7 @@ class UmaTierListApp {
     document.getElementById('btn-return-all').addEventListener('click', () => {
       if (confirm(I18N[this.currentLang].confirmReturnAll)) {
         this.categoryData[this.currentCategory].tiers.forEach(t => t.items = []);
-        this.loadCategoryState(this.currentCategory);
+        this.rebuildPool(this.currentCategory);
         this.renderTierBoard();
         this.renderPool();
         this.saveCategoryState();

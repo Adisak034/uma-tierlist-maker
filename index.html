@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Uma Musume Tier List Maker - จัดอันดับตัวละคร ชุด และการ์ดซัพ</title>
+  <title>Uma Musume Tier List Maker - Rank Characters, Outfits, and Support Cards</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="https://gametora.com/images/umamusume/icons/utx_ico_obtain_03.png" type="image/png">
   <!-- Pre-bundled Data for Instant & Offline Loading -->
@@ -18,34 +18,34 @@
         <span class="logo-icon">🏇</span>
         <div class="logo-text">
           <h1>Uma Musume Tier List Maker</h1>
-          <span id="txt-subtitle">จัดอันดับตัวละคร, ชุดคอสตูม และการ์ดซัพพอร์ต</span>
+          <span id="txt-subtitle">Rank Characters, Outfits, and Support Cards</span>
         </div>
       </div>
 
       <!-- Mode Switcher Tabs -->
       <nav class="category-tabs" role="tablist">
         <button class="tab-btn active" data-category="characters" id="tab-characters">
-          <span>🏇 ตัวละคร</span>
+          <span>🏇 Characters</span>
           <span class="badge-count" id="count-chars">173</span>
         </button>
         <button class="tab-btn" data-category="outfits" id="tab-outfits">
-          <span>👗 ชุดตัวละคร</span>
+          <span>👗 Outfits</span>
           <span class="badge-count" id="count-outfits">266</span>
         </button>
         <button class="tab-btn" data-category="supports" id="tab-supports">
-          <span>🎴 การ์ดซัพพอร์ต</span>
+          <span>🎴 Support Cards</span>
           <span class="badge-count" id="count-supports">557</span>
         </button>
       </nav>
 
       <!-- Utilities -->
       <div class="header-actions">
-        <div class="api-status-pill" id="api-status" title="สถานะการเชื่อมต่อ API Umapyoi.net">
+        <div class="api-status-pill" id="api-status" title="Umapyoi.net API Connection Status">
           <span class="status-dot" id="status-dot"></span>
-          <span id="status-text">Umapyoi.net พร้อมใช้งาน</span>
+          <span id="status-text">Umapyoi.net Ready</span>
         </div>
-        <button class="btn btn-icon" id="btn-sync-api" title="รีเฟรชข้อมูลจาก umapyoi.net">🔄</button>
-        <button class="btn btn-icon" id="btn-lang-toggle" title="สลับภาษา (TH / EN)">🌐 <span id="lang-indicator">TH</span></button>
+        <button class="btn btn-icon" id="btn-sync-api" title="Refresh data from umapyoi.net">🔄</button>
+        
       </div>
     </div>
   </header>
@@ -56,32 +56,32 @@
     <!-- Action / Control Toolbar -->
     <section class="control-bar">
       <div class="tier-title-box">
-        <input type="text" id="tierlist-title" class="title-input" value="Uma Musume Tier List" placeholder="ตั้งชื่อ Tier List ของคุณ...">
-        <input type="text" id="tierlist-desc" class="subtitle-input" value="จัดอันดับความชอบและเมต้าเกม Uma Musume: Pretty Derby" placeholder="เพิ่มคำอธิบาย...">
+        <input type="text" id="tierlist-title" class="title-input" value="Uma Musume Tier List" placeholder="Enter Tier List title...">
+        <input type="text" id="tierlist-desc" class="subtitle-input" value="Rank your favorite Uma Musume trainees, outfits, and support cards" placeholder="Add description...">
       </div>
 
       <div class="action-buttons">
         <!-- Zoom control -->
         <div class="zoom-control">
-          <span>🔍 ขนาดการ์ด:</span>
+          <span>🔍 Card Size:</span>
           <input type="range" id="card-zoom-slider" class="zoom-slider" min="60" max="115" value="84" step="4">
         </div>
 
         <button class="btn btn-gold" id="btn-export-img">
-          <span>📷 ดาวน์โหลดรูป</span>
+          <span>📷 Export Image</span>
         </button>
         <button class="btn btn-primary" id="btn-add-tier-top">
-          <span>➕ เพิ่ม Tier</span>
+          <span>➕ Add Tier</span>
         </button>
-        <button class="btn" id="btn-save-json" title="บันทึกโครงสร้างเป็นไฟล์">
-          <span>💾 บันทึก</span>
+        <button class="btn" id="btn-save-json" title="Save tier list as JSON file">
+          <span>💾 Save</span>
         </button>
-        <button class="btn" id="btn-load-json" title="โหลดไฟล์ Tier List ที่บันทึกไว้">
-          <span>📂 เปิดไฟล์</span>
+        <button class="btn" id="btn-load-json" title="Load saved tier list JSON file">
+          <span>📂 Load</span>
         </button>
         <input type="file" id="file-input-json" accept=".json" style="display: none;">
-        <button class="btn btn-danger" id="btn-reset-all" title="ล้างการจัดอันดับทั้งหมด">
-          <span>🧹 รีเซ็ต</span>
+        <button class="btn btn-danger" id="btn-reset-all" title="Reset all rankings">
+          <span>🧹 Reset</span>
         </button>
       </div>
     </section>
@@ -102,28 +102,28 @@
 
     <!-- Add Tier Button Bottom -->
     <div class="add-tier-row">
-      <button class="btn-add-tier" id="btn-add-tier-bottom">➕ เพิ่มแถว Tier ใหม่</button>
+      <button class="btn-add-tier" id="btn-add-tier-bottom">➕ Add New Tier Row</button>
     </div>
 
     <!-- Item Pool & Filtering Section -->
     <section class="pool-container" style="margin-top: 24px;">
       <div class="pool-header">
         <div class="pool-title-group">
-          <h2 id="txt-pool-title">📦 คลังที่ยังไม่ได้จัดอันดับ</h2>
-          <span class="pool-count" id="pool-count">0 รายการ</span>
+          <h2 id="txt-pool-title">📦 Unranked Items Pool</h2>
+          <span class="pool-count" id="pool-count">0 items</span>
         </div>
 
         <!-- Filter Toolbar -->
         <div class="filter-toolbar">
           <!-- Search box -->
           <div class="search-box">
-            <input type="text" id="pool-search" class="search-input" placeholder="🔍 ค้นหาชื่อ EN / JP / ชุด...">
+            <input type="text" id="pool-search" class="search-input" placeholder="🔍 Search EN / JP / Title...">
             <button class="search-clear-btn" id="btn-clear-search" style="display: none;">✕</button>
           </div>
 
           <!-- Rarity filters (SSR, SR, R) - especially for support cards -->
           <div class="pill-filters" id="rarity-filter-group" style="display: none;">
-            <button class="pill-btn active" data-rarity="all">ทั้งหมด</button>
+            <button class="pill-btn active" data-rarity="all">All</button>
             <button class="pill-btn" data-rarity="SSR">SSR</button>
             <button class="pill-btn" data-rarity="SR">SR</button>
             <button class="pill-btn" data-rarity="R">R</button>
@@ -131,17 +131,17 @@
 
           <!-- Character dropdown filter -->
           <select id="char-filter-select" class="filter-select">
-            <option value="all">ม้าสาวทั้งหมด (All Characters)</option>
+            <option value="all">All Characters</option>
           </select>
 
           <!-- Toggle Card Labels -->
-          <button class="btn" id="btn-toggle-labels" title="แสดง/ซ่อนชื่อใต้การ์ด">
-            🏷️ <span id="txt-label-toggle">ซ่อนชื่อ</span>
+          <button class="btn" id="btn-toggle-labels" title="Show/Hide names under cards">
+            🏷️ <span id="txt-label-toggle">Hide Names</span>
           </button>
 
           <!-- Return all to pool button -->
-          <button class="btn btn-danger" id="btn-return-all" title="นำการ์ดทั้งหมดกลับลงคลัง">
-            <span>↩️ นำกลับคลัง</span>
+          <button class="btn btn-danger" id="btn-return-all" title="Return all ranked cards back to pool">
+            <span>↩️ Return All</span>
           </button>
         </div>
       </div>
@@ -158,28 +158,28 @@
   <div class="modal-overlay" id="tier-modal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3 id="txt-modal-edit-tier">แก้ไขแถว Tier</h3>
+        <h3 id="txt-modal-edit-tier">Edit Tier Row</h3>
         <button class="modal-close-btn" id="btn-close-tier-modal">✕</button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label id="txt-label-tier-name">ชื่อ Tier:</label>
-          <input type="text" id="input-tier-name" class="form-control" placeholder="เช่น S, God, Tier 1">
+          <label id="txt-label-tier-name">Tier Name:</label>
+          <input type="text" id="input-tier-name" class="form-control" placeholder="e.g. S, God, Tier 1">
         </div>
         <div class="form-group">
-          <label id="txt-label-tier-color">เลือกสีแถว:</label>
+          <label id="txt-label-tier-color">Select Tier Color:</label>
           <div class="color-swatches" id="color-swatches">
             <!-- Preset Color Options -->
           </div>
           <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
             <input type="color" id="input-tier-custom-color" style="cursor: pointer; width: 36px; height: 36px; border: none; border-radius: 4px; background: transparent;">
-            <span style="font-size: 12px; color: var(--text-secondary);">เลือกสีอิสระ (Custom Hex)</span>
+            <span style="font-size: 12px; color: var(--text-secondary);">Custom Hex Color</span>
           </div>
         </div>
       </div>
       <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
-        <button class="btn" id="btn-cancel-tier-modal">ยกเลิก</button>
-        <button class="btn btn-primary" id="btn-save-tier-modal">บันทึก</button>
+        <button class="btn" id="btn-cancel-tier-modal">Cancel</button>
+        <button class="btn btn-primary" id="btn-save-tier-modal">Save</button>
       </div>
     </div>
   </div>
@@ -188,16 +188,16 @@
   <div class="modal-overlay" id="quick-move-modal">
     <div class="modal-box" style="max-width: 380px;">
       <div class="modal-header">
-        <h3 id="quick-move-card-name">ย้ายการ์ดไปยัง Tier</h3>
+        <h3 id="quick-move-card-name">Move Card to Tier</h3>
         <button class="modal-close-btn" id="btn-close-quick-move">✕</button>
       </div>
       <div class="modal-body">
-        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">เลือก Tier ที่ต้องการใส่การ์ดนี้:</p>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">Select target tier for this card:</p>
         <div class="quick-move-tiers" id="quick-move-tiers-list">
           <!-- Buttons for each tier generated dynamically -->
         </div>
         <button class="btn btn-danger" id="btn-quick-move-pool" style="width: 100%; justify-content: center; margin-top: 8px;">
-          📦 ส่งกลับลงคลัง (Return to Pool)
+          📦 Return to Pool
         </button>
       </div>
     </div>
@@ -207,7 +207,7 @@
   <div class="modal-overlay" id="export-modal">
     <div class="modal-box" style="max-width: 720px;">
       <div class="modal-header">
-        <h3>🎉 ส่งออกรูปภาพ Tier List สำเร็จ!</h3>
+        <h3>🎉 Tier List Exported Successfully!</h3>
         <button class="modal-close-btn" id="btn-close-export-modal">✕</button>
       </div>
       <div class="modal-body" style="text-align: center;">
@@ -216,9 +216,9 @@
         </div>
         <div style="display: flex; justify-content: center; gap: 12px;">
           <a id="btn-download-img" class="btn btn-gold" download="uma-musume-tier-list.png">
-            📥 ดาวน์โหลดรูปภาพ (Download PNG)
+            📥 Download PNG Image
           </a>
-          <button class="btn" id="btn-copy-img">📋 คัดลอกรูปภาพ (Copy)</button>
+          <button class="btn" id="btn-copy-img">📋 Copy to Clipboard</button>
         </div>
       </div>
     </div>
@@ -246,4 +246,3 @@
   <script src="app.js"></script>
 </body>
 </html>
-
