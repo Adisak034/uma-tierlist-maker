@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Fetch latest data from Umapyoi.net API
         run: node fetch_data.js
@@ -38,4 +38,3 @@ jobs:
             git push
             echo "Pushed updated data to repository!"
           fi
-
