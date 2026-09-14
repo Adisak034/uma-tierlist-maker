@@ -2952,6 +2952,18 @@
     "category": "support"
   },
   {
+    "id": 20101,
+    "chara_id": 1047,
+    "title": "",
+    "name": "Zenno Rob Roy",
+    "chara_name": "Zenno Rob Roy",
+    "chara_name_jp": "ゼンノロブロイ",
+    "gametora": "20101-zenno-rob-roy",
+    "rarity": "SR",
+    "image": "https://gametora.com/images/umamusume/supports/support_card_s_20101.png",
+    "category": "support"
+  },
+  {
     "id": 30001,
     "chara_id": 1001,
     "title": "[Japan's Number 1 Stage]",
@@ -6681,6 +6693,18 @@
     "gametora": "30316-samson-big",
     "rarity": "SSR",
     "image": "https://gametora.com/images/umamusume/supports/support_card_s_30316.png",
+    "category": "support"
+  },
+  {
+    "id": 30317,
+    "chara_id": 1062,
+    "title": "",
+    "name": "Matikanetannhauser",
+    "chara_name": "Matikanetannhauser",
+    "chara_name_jp": "マチカネタンホイザ",
+    "gametora": "30317-matikanetannhauser",
+    "rarity": "SSR",
+    "image": "https://gametora.com/images/umamusume/supports/support_card_s_30317.png",
     "category": "support"
   }
 ]

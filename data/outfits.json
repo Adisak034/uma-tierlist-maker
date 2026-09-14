@@ -3190,5 +3190,17 @@
     "image": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1145_114501.png",
     "fallback_image": "https://gametora.com/images/umamusume/characters/icons/chr_icon_1145.png",
     "category": "outfit"
+  },
+  {
+    "id": 114901,
+    "chara_game_id": 1149,
+    "title": "[絶佳の暁闇]",
+    "name": "[絶佳の暁闇] Phalaenopsis",
+    "chara_name": "Phalaenopsis",
+    "chara_name_jp": "ファレノプシス",
+    "gametora": "114901-phalaenopsis",
+    "image": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1149_114901.png",
+    "fallback_image": "https://gametora.com/images/umamusume/characters/icons/chr_icon_1149.png",
+    "category": "outfit"
   }
 ]
