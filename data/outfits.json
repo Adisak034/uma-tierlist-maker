@@ -3180,6 +3180,18 @@
     "category": "outfit"
   },
   {
+    "id": 114401,
+    "chara_game_id": 1144,
+    "title": "[Éclat de Roseraie]",
+    "name": "[Éclat de Roseraie] Rose Kingdom",
+    "chara_name": "Rose Kingdom",
+    "chara_name_jp": "ローズキングダム",
+    "gametora": "114401-rose-kingdom",
+    "image": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1144_114401.png",
+    "fallback_image": "https://gametora.com/images/umamusume/characters/icons/chr_icon_1144.png",
+    "category": "outfit"
+  },
+  {
     "id": 114501,
     "chara_game_id": 1145,
     "title": "[Monochrome GM]",
