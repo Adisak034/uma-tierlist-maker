@@ -6706,5 +6706,53 @@
     "rarity": "SSR",
     "image": "https://gametora.com/images/umamusume/supports/support_card_s_30317.png",
     "category": "support"
+  },
+  {
+    "id": 30318,
+    "chara_id": 1030,
+    "title": "",
+    "name": "Rice Shower",
+    "chara_name": "Rice Shower",
+    "chara_name_jp": "ライスシャワー",
+    "gametora": "30318-rice-shower",
+    "rarity": "SSR",
+    "image": "https://gametora.com/images/umamusume/supports/support_card_s_30318.png",
+    "category": "support"
+  },
+  {
+    "id": 30319,
+    "chara_id": 1016,
+    "title": "",
+    "name": "Narita Brian",
+    "chara_name": "Narita Brian",
+    "chara_name_jp": "ナリタブライアン",
+    "gametora": "30319-narita-brian",
+    "rarity": "SSR",
+    "image": "https://gametora.com/images/umamusume/supports/support_card_s_30319.png",
+    "category": "support"
+  },
+  {
+    "id": 30320,
+    "chara_id": 1118,
+    "title": "",
+    "name": "Admire Groove",
+    "chara_name": "Admire Groove",
+    "chara_name_jp": "アドマイヤグルーヴ",
+    "gametora": "30320-admire-groove",
+    "rarity": "SSR",
+    "image": "https://gametora.com/images/umamusume/supports/support_card_s_30320.png",
+    "category": "support"
+  },
+  {
+    "id": 30321,
+    "chara_id": 1108,
+    "title": "",
+    "name": "Duramente",
+    "chara_name": "Duramente",
+    "chara_name_jp": "ドゥラメンテ",
+    "gametora": "30321-duramente",
+    "rarity": "SSR",
+    "image": "https://gametora.com/images/umamusume/supports/support_card_s_30321.png",
+    "category": "support"
   }
 ]

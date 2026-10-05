@@ -516,6 +516,18 @@
     "category": "outfit"
   },
   {
+    "id": 101703,
+    "chara_game_id": 1017,
+    "title": "[Adamant Sovereign]",
+    "name": "[Adamant Sovereign] Symboli Rudolf",
+    "chara_name": "Symboli Rudolf",
+    "chara_name_jp": "シンボリルドルフ",
+    "gametora": "101703-symboli-rudolf",
+    "image": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1017_101703.png",
+    "fallback_image": "https://gametora.com/images/umamusume/characters/icons/chr_icon_1017.png",
+    "category": "outfit"
+  },
+  {
     "id": 101801,
     "chara_game_id": 1018,
     "title": "[Empress Road]",
@@ -536,6 +548,18 @@
     "chara_name_jp": "エアグルーヴ",
     "gametora": "101802-air-groove",
     "image": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1018_101802.png",
+    "fallback_image": "https://gametora.com/images/umamusume/characters/icons/chr_icon_1018.png",
+    "category": "outfit"
+  },
+  {
+    "id": 101803,
+    "chara_game_id": 1018,
+    "title": "[Eternal Hekateia]",
+    "name": "[Eternal Hekateia] Air Groove",
+    "chara_name": "Air Groove",
+    "chara_name_jp": "エアグルーヴ",
+    "gametora": "101803-air-groove",
+    "image": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1018_101803.png",
     "fallback_image": "https://gametora.com/images/umamusume/characters/icons/chr_icon_1018.png",
     "category": "outfit"
   },
