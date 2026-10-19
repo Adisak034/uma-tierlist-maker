@@ -2796,6 +2796,18 @@
     "category": "outfit"
   },
   {
+    "id": 110802,
+    "chara_game_id": 1108,
+    "title": "[Claret Nosferatu]",
+    "name": "[Claret Nosferatu] Duramente",
+    "chara_name": "Duramente",
+    "chara_name_jp": "ドゥラメンテ",
+    "gametora": "110802-duramente",
+    "image": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1108_110802.png",
+    "fallback_image": "https://gametora.com/images/umamusume/characters/icons/chr_icon_1108.png",
+    "category": "outfit"
+  },
+  {
     "id": 110901,
     "chara_game_id": 1109,
     "title": "[Dream Successor]",
