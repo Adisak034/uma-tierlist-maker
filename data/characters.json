@@ -1656,6 +1656,18 @@
     "category": "character"
   },
   {
+    "id": 10416,
+    "game_id": null,
+    "name": "Win Marilyn",
+    "name_jp": "ウインマリリン",
+    "color_main": "#b9214a",
+    "color_sub": "#283640",
+    "image": "https://images.microcms-assets.io/assets/973fc097984b400db8729642ddff5938/bea559b24f2d45a68118543f109d219f/winmarilyn_list.png",
+    "icon": "https://images.microcms-assets.io/assets/973fc097984b400db8729642ddff5938/bea559b24f2d45a68118543f109d219f/winmarilyn_list.png",
+    "preferred_url": "winmarilyn",
+    "category": "character"
+  },
+  {
     "id": 10348,
     "game_id": 1117,
     "name": "Win Variation",
@@ -1749,6 +1761,18 @@
     "image": "https://images.microcms-assets.io/assets/973fc097984b400db8729642ddff5938/e23de710d8e14542be1e9b9a1428c8c4/kiryuinaoi_list.png",
     "icon": "https://gametora.com/images/umamusume/characters/icons/chr_icon_9004.png",
     "preferred_url": "aoi-kiryuin",
+    "category": "character"
+  },
+  {
+    "id": 10415,
+    "game_id": null,
+    "name": "Azuma",
+    "name_jp": "吾妻",
+    "color_main": "#de3b34",
+    "color_sub": "#ddccb3",
+    "image": "https://images.microcms-assets.io/assets/973fc097984b400db8729642ddff5938/81f6ba4037974efb9f03d21897a60eb8/azuma_list.png",
+    "icon": "https://images.microcms-assets.io/assets/973fc097984b400db8729642ddff5938/81f6ba4037974efb9f03d21897a60eb8/azuma_list.png",
+    "preferred_url": "azuma",
     "category": "character"
   },
   {
