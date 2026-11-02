@@ -288,6 +288,18 @@
     "category": "outfit"
   },
   {
+    "id": 100903,
+    "chara_game_id": 1009,
+    "title": "[陣風の花紺青]",
+    "name": "[陣風の花紺青] Daiwa Scarlet",
+    "chara_name": "Daiwa Scarlet",
+    "chara_name_jp": "ダイワスカーレット",
+    "gametora": "100903-daiwa-scarlet",
+    "image": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1009_100903.png",
+    "fallback_image": "https://gametora.com/images/umamusume/characters/icons/chr_icon_1009.png",
+    "category": "outfit"
+  },
+  {
     "id": 101001,
     "chara_game_id": 1010,
     "title": "[Wild Frontier]",

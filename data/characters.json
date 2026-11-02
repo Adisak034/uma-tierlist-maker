@@ -1765,13 +1765,13 @@
   },
   {
     "id": 10415,
-    "game_id": null,
+    "game_id": 9052,
     "name": "Azuma",
     "name_jp": "吾妻",
     "color_main": "#de3b34",
     "color_sub": "#ddccb3",
     "image": "https://images.microcms-assets.io/assets/973fc097984b400db8729642ddff5938/81f6ba4037974efb9f03d21897a60eb8/azuma_list.png",
-    "icon": "https://images.microcms-assets.io/assets/973fc097984b400db8729642ddff5938/81f6ba4037974efb9f03d21897a60eb8/azuma_list.png",
+    "icon": "https://gametora.com/images/umamusume/characters/icons/chr_icon_9052.png",
     "preferred_url": "azuma",
     "category": "character"
   },

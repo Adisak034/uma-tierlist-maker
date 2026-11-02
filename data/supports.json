@@ -1752,6 +1752,18 @@
     "category": "support"
   },
   {
+    "id": 10149,
+    "chara_id": 9052,
+    "title": "",
+    "name": "Azuma",
+    "chara_name": "Azuma",
+    "chara_name_jp": "吾妻",
+    "gametora": "10149-azuma",
+    "rarity": "R",
+    "image": "https://gametora.com/images/umamusume/supports/support_card_s_10149.png",
+    "category": "support"
+  },
+  {
     "id": 20001,
     "chara_id": 1005,
     "title": "[Good Grief, Welcome Back]",
@@ -6753,6 +6765,30 @@
     "gametora": "30321-duramente",
     "rarity": "SSR",
     "image": "https://gametora.com/images/umamusume/supports/support_card_s_30321.png",
+    "category": "support"
+  },
+  {
+    "id": 30322,
+    "chara_id": 1024,
+    "title": "",
+    "name": "Mayano Top Gun",
+    "chara_name": "Mayano Top Gun",
+    "chara_name_jp": "マヤノトップガン",
+    "gametora": "30322-mayano-top-gun",
+    "rarity": "SSR",
+    "image": "https://gametora.com/images/umamusume/supports/support_card_s_30322.png",
+    "category": "support"
+  },
+  {
+    "id": 30323,
+    "chara_id": 9052,
+    "title": "",
+    "name": "Azuma",
+    "chara_name": "Azuma",
+    "chara_name_jp": "吾妻",
+    "gametora": "30323-azuma",
+    "rarity": "SSR",
+    "image": "https://gametora.com/images/umamusume/supports/support_card_s_30323.png",
     "category": "support"
   }
 ]
